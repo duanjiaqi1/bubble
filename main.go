@@ -25,7 +25,6 @@ func main() {
 		return
 	}
 	// 创建数据库
-	// sql: CREATE DATABASE bubble;
 	// 连接数据库
 	err := dao.InitMySQL(setting.Conf.MySQLConfig)
 	if err != nil {

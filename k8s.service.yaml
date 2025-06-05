@@ -1,0 +1,15 @@
+apiversion: app/v1
+kind: Service
+metadata:
+  name: my-service      # service名称
+  labels:               # service的标签
+    app: nginx 
+spec:
+ selector:          # 任何带有app=my-app标签的pod都会被这个service管理
+    app: my-app  
+  ports:            # 将所有发送到80端口的tcp流量转发到所有app=my-app 标签的pod9376的端口上
+    - protocol: TCP  
+      port: 80      # service的端口
+      targetPort: 9376     # 映射到pod的端口
+
+  type: ClusterIP    # service 的类型

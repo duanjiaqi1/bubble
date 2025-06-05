@@ -1,0 +1,7 @@
+{"animal":"walrus","level":"warning","msg":"A group of walrus emerges from the ocean","size":10,"time":"2024-08-21T17:21:08+08:00"}
+{"level":"info","msg":"用户登录","time":"2024-08-21T17:21:08+08:00","user":"john"}
+[GIN] 2024/08/21 - 17:21:08 | 200 |     849.916µs |       127.0.0.1 | GET      "/hello"
+[GIN] 2024/08/21 - 17:21:08 | 404 |         625ns |       127.0.0.1 | GET      "/favicon.ico"
+{"animal":"walrus","level":"warning","msg":"A group of walrus emerges from the ocean","size":10,"time":"2024-08-21T17:21:36+08:00"}
+{"level":"info","msg":"用户登录","time":"2024-08-21T17:21:36+08:00","user":"john"}
+[GIN] 2024/08/21 - 17:21:36 | 200 |         494µs |             ::1 | GET      "/hello"

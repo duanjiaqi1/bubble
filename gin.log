@@ -1,0 +1,2 @@
+time="2024-07-15T14:56:47+08:00" level=warning msg="A group of walrus emerges from the ocean" animal=walrus size=10
+[GIN] 2024/07/15 - 14:56:47 | 200 |    1.461666ms |       127.0.0.1 | GET      "/hello"

@@ -1,0 +1,21 @@
+apiVsersion: app/v1
+kind: Deployment
+metadata:     # deployment的元数据。名字和标签
+  name: my-deployment
+  labels:  
+    app: nginx 
+spec:            # deployment的规格，包括运行多少副本，pod的选择器（selector）,pod模版
+  replica: 3     # 要运行的pod副本数
+  selector:      # 哪些pod应该由deployment来管理，通过matchlabels来选择
+    matchLabels:  
+      app: nginx  
+  template:     # pod模版，要创建pod的具体规则
+    metadata:   # 定义了pod的元数据
+      labels:   # 这些标签应该与deployment选择器的标签相匹配
+        app: nginx  
+    spec:       # pod的规则，以及要运行的容器
+      containers:  
+      - name: nginx     # 容器名字及镜像版本
+        image: nginx:1.17.1  
+        ports:  
+        - containerPort: 80

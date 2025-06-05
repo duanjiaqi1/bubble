@@ -1,0 +1,36 @@
+apiVersion: apps/v1      # 必选，版本号，例如v1
+kind: pod                # 必选，Pod
+metadata:
+  name: my-pod-nginx            # 必选，Pod名称
+  namespace: my-pod-nginx       # 必选，Pod所属的命名空间, 默认为default 
+spec:
+  containers:                 # 必选，Pod中容器列表
+  - name: nginx               # 必选，容器名称
+    image: nginx              # 必选，nginx容器的镜像名称
+    restartPolicy: OnFailure  # 每个容器可以有自己的重启策略,容器的重启策略会先走这个，无论pod级别的重启策略是否跟这个一致
+  
+  - name: mysql               # 容器名称
+    image: mysql8.0           # mysql镜像名称
+    estartPolicy: Always      # mysql容器的重启策略
+    volumeMounts:             # mysql的pod挂载my-volume的数据卷
+    - name: my-volume  
+      mountPath: /usr/share/nginx/html 
+    livenessProbe:            # 存活指针
+      httpGet:                # 使用httpget请求来检查/路经的响应状态码
+        path: /  
+        port: 80  
+      initialDelaySeconds: 5  # 容器启动多久后还开始执行指针
+      periodSeconds: 10       # 指针执行的周期
+    readinessProbe:           # 就绪指针
+      httpGet:  
+        path: /healthz  
+        port: 8080  
+      initialDelaySeconds: 5  
+      periodSeconds: 10
+
+  restartPolicy: Always       # pod 级别的重启策略
+  
+  volumes:                    # 存储卷，定义了一个名为my-volume的emptydir类型的存储卷，并将这个存储卷挂载到 /usr/share/nginx/html 路径上（spec/voluemouts）
+  - name: my-volume
+    EmptyDir: {}
+                    
